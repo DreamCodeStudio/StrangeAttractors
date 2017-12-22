@@ -16,6 +16,9 @@ void App::Create()
     _Stop.Create(&_AppWindow, sf::Vector2f(490, 10), sf::Vector2f(150, 50), sf::Color(230, 230, 230), sf::Color(0, 0, 0), "Stop", "Data/Font/std.ttf");
     _Clear.Create(&_AppWindow, sf::Vector2f(650, 10), sf::Vector2f(150, 50), sf::Color(230, 230, 230), sf::Color(0, 0, 0), "Clear", "Data/Font/std.ttf");
 
+    /* Create Slider */
+    _Distance.Create(&_AppWindow, sf::Vector2f(10, 70), sf::Vector2f(200, 30), 90, 10);
+
     /* Create Jumper */
     _Jumper.Create(&_AppWindow, &_Attractors);
 
@@ -98,6 +101,10 @@ void App::Update()
         }
     }
 
+    /* Update Slider */
+    _Distance.Update();
+    _Jumper.SetDistance(_Distance.GetValue() / 100.0f);
+
     /* Update all Attractors */
     for (unsigned int i = 0; i < _Attractors.size(); i++)
     {
@@ -112,12 +119,15 @@ void App::Render()
     /* Draw App Background */
     _AppWindow.draw(_AppBackground);
     
-    /* Draw Buttonss */
+    /* Draw Buttons */
     _CreateAttractor.Render();
     _SingleJump.Render();
     _Run.Render();
     _Stop.Render();
     _Clear.Render();
+
+    /* Draw Sliders */
+    _Distance.Render();
 
     /* Draw Jumper */
     _Jumper.Render();

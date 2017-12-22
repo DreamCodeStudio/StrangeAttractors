@@ -17,13 +17,14 @@ class Jumper
         void Jump();
         void Render();
         void Clear();
+        void SetDistance(float Distance);
 
     private:
 
         sf::RenderWindow *_AppWindow;
         sf::CircleShape _Jumper;
 
-        int _JumpPercentage;
+        float _JumpPercentage;
 
         /* Attractor List */
         std::vector<Attractor*>* _AttractorList;

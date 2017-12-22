@@ -8,6 +8,9 @@
 /* Buttons */
 #include "../GUI/Button/Button.h"
 
+/* Sliders */
+#include "../GUI/Slider/Slider.h"
+
 /* Attractors */
 #include "Attractor/Attractor.h"
 
@@ -38,6 +41,9 @@ class App
         GUI::Button _Run;
         GUI::Button _Stop;
         GUI::Button _Clear;
+
+        /* Sliders */
+        GUI::Slider _Distance;
 
         bool _IsRunning;
 

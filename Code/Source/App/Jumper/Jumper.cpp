@@ -17,7 +17,7 @@ void Jumper::Create(sf::RenderWindow *Window, std::vector<Attractor*>* Attractor
     _Jumper.setPosition(450, 450);
 
     /* Set start values */
-    _JumpPercentage = 0.5;
+    _JumpPercentage = 0.5f;
 }
 
 void Jumper::Jump()
@@ -26,8 +26,8 @@ void Jumper::Jump()
     int RandomAttractor = rand() % _AttractorList->size();
 
     /* Jump part of the way */
-    float XDistance = (_AttractorList->at(RandomAttractor)->GetPosition().x - _Jumper.getPosition().x) / 2;
-    float YDistance = (_AttractorList->at(RandomAttractor)->GetPosition().y - _Jumper.getPosition().y) / 2;
+    float XDistance = (_AttractorList->at(RandomAttractor)->GetPosition().x - _Jumper.getPosition().x) * _JumpPercentage;
+    float YDistance = (_AttractorList->at(RandomAttractor)->GetPosition().y - _Jumper.getPosition().y) * _JumpPercentage;
 
     _OldPositions.push_back(new sf::CircleShape);
     _OldPositions[_OldPositions.size() - 1]->setFillColor(sf::Color(255, 0, 0));
@@ -54,4 +54,9 @@ void Jumper::Clear()
         delete _OldPositions[i];
     }
     _OldPositions.clear();
+}
+
+void Jumper::SetDistance(float Distance)
+{
+    _JumpPercentage = Distance;
 }
